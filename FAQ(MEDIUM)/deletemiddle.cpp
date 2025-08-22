@@ -37,24 +37,40 @@ void traverse(Node* head){
     cout << endl;
 }
 // Brute
+// Node* deleteMiddle(Node* head){
+//     if(head == NULL || head->next == NULL){
+//         return NULL;
+//     }
+//     int count = 0;
+//     Node* temp = head;
+//     while(temp != NULL){
+//         count++;
+//         temp = temp->next;
+//     }
+//     temp = head;
+//     int middlePos = (count / 2) + 1;
+//     for(int i = 1; i < middlePos - 1; i++){
+//         temp = temp->next;
+//     }
+//     Node* mid = temp->next;
+//     temp->next = temp->next->next;
+//     delete(mid);
+//     return head;
+// }
 Node* deleteMiddle(Node* head){
     if(head == NULL || head->next == NULL){
         return NULL;
     }
-    int count = 0;
-    Node* temp = head;
-    while(temp != NULL){
-        count++;
-        temp = temp->next;
+    Node* fast = head;
+    Node* slow = head;
+    fast = fast->next->next;
+    while(fast != NULL && fast->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
     }
-    temp = head;
-    int middlePos = (count / 2) + 1;
-    for(int i = 1; i < middlePos - 1; i++){
-        temp = temp->next;
-    }
-    Node* mid = temp->next;
-    temp->next = temp->next->next;
-    delete(mid);
+    Node* temp = slow->next;
+    slow->next = slow->next->next;
+    delete temp;
     return head;
 }
 int main(){
