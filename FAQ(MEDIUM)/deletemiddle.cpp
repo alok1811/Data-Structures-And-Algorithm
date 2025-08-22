@@ -57,6 +57,7 @@ void traverse(Node* head){
 //     delete(mid);
 //     return head;
 // }
+//Optimal
 Node* deleteMiddle(Node* head){
     if(head == NULL || head->next == NULL){
         return NULL;
