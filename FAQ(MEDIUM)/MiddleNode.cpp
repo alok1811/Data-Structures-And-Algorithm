@@ -35,6 +35,7 @@ void traverse(Node* head){
         temp = temp->next;
     }
 }
+// Optimal
 Node* middleNode(Node* head){
     Node* fast = head;
     Node* slow = head;
@@ -60,3 +61,20 @@ int main() {
 
     return 0;
 }
+// Brute
+/*Node* middle (Node* head){
+    int count = 0;
+    Node* temp = head;
+    while(temp != NULL){
+    count++;
+    temp = temp->next;
+    }
+    temp = head;
+    int middle  =(count / 2) + 1;
+    for(int i = 1; i < middle; i++){
+    temp = temp->next;
+    }
+    return temp;
+}*/
+
+// Both the approach use the same time complexity of O(n)
