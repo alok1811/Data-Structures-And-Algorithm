@@ -37,21 +37,71 @@ void traverse(Node* head){
     cout<< endl;
 }
 // Brute
+// Node* intersectionNode(Node* head1, Node* head2){
+//     unordered_set<Node*> nodes_set;
+//     Node* temp = head1;
+//     while(temp != NULL){
+//         nodes_set.insert(temp);
+//         temp = temp->next;
+//     }
+//     temp = head2;
+//     while(temp != NULL){
+//         if(nodes_set.find(temp) != nodes_set.end()){
+//             return temp;
+//         }
+//         temp = temp->next;
+//     }
+//     return NULL;
+// }
+/* better
+
+Node* intersectionPoint(Node* head1, Node* head2){
+      temp1 = head1;
+      temp2 = head2;
+
+      int n1 = 0; int n2 = 0;
+      while(temp1 != NULL){
+      n1++;
+      temp1 = temp1->next;
+      }
+      while(temp2 != NULL){
+      n2++;
+      temp2->next;
+      }
+      if(n1 < n2) return collisionpoint(Node* head1, Node* head2, n2 - n1);
+      else return collisonpoint(Node* head2, Node* head1, n1 - n2);
+}
+
+Node* collisionpoint(Node* heada, Node* headb, int len){
+    Node* t1 = heada;
+    Node* t2 = headb;
+    for(int i = 0 ; i < len; i++){
+    t2 = t2->next;
+    }
+    while(t1 != t2){
+      t1 = t1->next;
+      t2 = t2->next;
+
+    }
+      return t1;
+}
+*/
+
 Node* intersectionNode(Node* head1, Node* head2){
-    unordered_set<Node*> nodes_set;
-    Node* temp = head1;
-    while(temp != NULL){
-        nodes_set.insert(temp);
-        temp = temp->next;
+    if(head1 == NULL || head2 == NULL){
+        return NULL;
     }
-    temp = head2;
-    while(temp != NULL){
-        if(nodes_set.find(temp) != nodes_set.end()){
-            return temp;
-        }
-        temp = temp->next;
+    Node* t1 = head1;
+    Node* t2 = head2;
+    while(t1 != t2){
+        t1 = t1->next;
+        t2 = t2->next;
+
+        if(t1 ==  t2) return t1;
+        if(t1 == NULL) t1 = head2;
+        if(t2 == NULL) t2 = head1;
     }
-    return NULL;
+    return t1;
 }
 int main() {
     vector<int> arr1 = {1, 2, 3, 4, 5};
